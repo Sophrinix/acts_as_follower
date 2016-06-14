@@ -22,7 +22,7 @@ module ActsAsFollower #:nodoc:
 
       # Returns true if this instance is blocking the object passed as an argument.
       def blocking?(followable)
-        0 < Follow.blocked.for_follower(followable).for_followable(self).count
+        0 < Follow.blocked.for_follower(self).for_followable(followable).count
       end
 
       # Returns the number of objects this instance is following.
