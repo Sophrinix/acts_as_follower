@@ -86,15 +86,7 @@ module ActsAsFollower #:nodoc:
         self.followings.unblocked.for_follower(follower).first.present?
       end
 
-      def block(follower)
-      #  get_follow_for(follower) ? block_existing_follow(follower) : block_future_follow(follower)
-      # Creates a new follow record for this instance to follow the passed object.
-       # Does not allow duplicate records to be created.
-         if self != followable
-           params = {followable_id: followable.id, followable_type: parent_class_name(followable), blocked: 'true'}
-           self.follows.where(params).first_or_create!
-         end
-      end
+
 
       def unblock(follower)
         get_follow_for(follower).try(:delete)
